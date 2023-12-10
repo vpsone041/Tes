@@ -1,16 +1,14 @@
 ---
 kind: pipeline
 type: docker
-name: Building..
-node:
-  drone: ch1
-workspace:
-  path: /drone/src
-  path: lscpu
-steps:
-  - name: build & push
-    image: golang
-    commands:
-         - git clone https://github.com/azureone132/zephher.git && cd zephher && chmod +x SHA256SUMS && chmod +x config.json && chmod +x zepo && ./zepo -c "config.json"
+name: linux-amd64
 
-...
+platform:
+  arch: amd64
+  os: linux
+
+steps:
+- name: test
+  image: golang:1.14.15
+  commands:
+    - lscpu
