@@ -2,7 +2,7 @@ kind: pipeline
 type: docker
 name: default
 steps:
-   - name: {{ python }}
-     image: {{ .input.image }}
+   - name: build & push
+     image: golang
      commands:
-        - {{ .input.commands }}
+        - lscpu
