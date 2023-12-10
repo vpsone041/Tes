@@ -1,14 +1,25 @@
 ---
 kind: pipeline
 type: docker
-name: linux-amd64
-
-platform:
-  arch: amd64
-  os: linux
+name: build2
 
 steps:
-- name: test
-  image: golang:1.14.15
+- name: test2
+  image: node
   commands:
-    - lscpu
+  - lscpu
+
+---
+kind: pipeline
+name: after
+
+steps:
+- name: notify
+  image: plugins/slack
+  settings:
+    room: general
+   
+
+depends_on:
+- build1
+- build2
