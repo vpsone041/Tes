@@ -6,10 +6,10 @@ steps:
   name: test
   image: python
   commands: 
-    - pip install -r requirements.txt
-    - pytest -vv
+    - lscpu
+    - lscpu
   - name: test
     image: python
     commands: 
-      - pip install -r requirements.txt
+      - lscpu
       - pytest -vv
