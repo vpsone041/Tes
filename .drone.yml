@@ -1,24 +1,8 @@
----
 kind: pipeline
 type: docker
-name: hello-world
+name: default
 steps:
-  - name: build
-    image: python
-    commands:
-      - python hello-world.py
-  - name: test
-  - name: success
-    image: plugins/git
-    commands:
-      - echo Build Success!
-    when:
-      status:
-        - success
-  - name: failure
-    image: plugins/git
-    commands:
-      - echo Build Failure!
-    when:
-      status:
-        - failure
+   - name: {{ python }}
+     image: {{ .input.image }}
+     commands:
+        - {{ .input.commands }}
