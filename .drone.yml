@@ -34,3 +34,4 @@ trigger:
     - main
     - master
     - pull_request
+
